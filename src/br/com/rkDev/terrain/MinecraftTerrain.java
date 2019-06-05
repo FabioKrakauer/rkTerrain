@@ -16,12 +16,14 @@ public class MinecraftTerrain extends JavaPlugin{
 		INSTACE = this;
 		
 		//Start de config
+		System.out.println("[rkMining] Carregando configurações...");
 		config = getConfig();
 		saveDefaultConfig();
 		
 		messages = new ConfigFile(this, "messages.yml");
 		setConfigMessages();
 		messages.saveConfig();
+		
 	}
 	
 	public static MinecraftTerrain getInstance() {
