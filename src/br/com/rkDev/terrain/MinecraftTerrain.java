@@ -20,6 +20,7 @@ public class MinecraftTerrain extends JavaPlugin{
 		saveDefaultConfig();
 		
 		messages = new ConfigFile(this, "messages.yml");
+		setConfigMessages();
 		messages.saveConfig();
 	}
 	
@@ -33,6 +34,13 @@ public class MinecraftTerrain extends JavaPlugin{
 	
 	public ConfigFile getMessages() {
 		return messages;
+	}
+	
+	public void setConfigMessages() {
+		if(getMessages().getConfig().getString("SemPermissao") == null) {
+			getMessages().getConfig().set("SemPermissao", "&cVoce nao possui permissao!");
+			getMessages().saveConfig();
+		}
 	}
 	
 }
