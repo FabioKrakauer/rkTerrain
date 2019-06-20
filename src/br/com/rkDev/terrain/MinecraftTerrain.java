@@ -48,6 +48,10 @@ public class MinecraftTerrain extends JavaPlugin{
 		return INSTACE;
 	}
 	
+	public Economy getEconomy() {
+		return economy;
+	}
+	
 	public FileConfiguration getConfig() {
 		return config;
 	}
