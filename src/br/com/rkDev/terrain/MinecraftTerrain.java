@@ -73,6 +73,17 @@ public class MinecraftTerrain extends JavaPlugin{
 		}
 	}
 	
+	public void setConfig() {
+		if(getConfig().isConfigurationSection("MySQL") == false) {
+			getConfig().set("MySQL.Host", "localhost");
+			getConfig().set("MySQL.Port", 3306);
+			getConfig().set("MySQL.Database", "terrain");
+			getConfig().set("MySQL.User", "root");
+			getConfig().set("MySQL.Password", "");
+			saveConfig();
+		}
+	}
+	
 	public DatabaseManager getDatabaseManager() {
 		return databaseManager;
 	}
