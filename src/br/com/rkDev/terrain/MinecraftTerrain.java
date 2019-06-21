@@ -6,6 +6,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import br.com.rkDev.terrain.config.ConfigFile;
+import br.com.rkDev.terrain.database.DatabaseManager;
 import net.milkbowl.vault.economy.Economy;
 
 public class MinecraftTerrain extends JavaPlugin{
@@ -15,6 +16,8 @@ public class MinecraftTerrain extends JavaPlugin{
 	
 	private FileConfiguration config;
 	private ConfigFile messages;
+	
+	private DatabaseManager databaseManager;
 	
 	public void onEnable() {
 		INSTACE = this;
@@ -35,6 +38,9 @@ public class MinecraftTerrain extends JavaPlugin{
 		setConfigMessages();
 		messages.saveConfig();
 		
+		//managers
+		
+		databaseManager = new DatabaseManager();
 	}
 	
 	public boolean setupEconomy() {
@@ -67,4 +73,7 @@ public class MinecraftTerrain extends JavaPlugin{
 		}
 	}
 	
+	public DatabaseManager getDatabaseManager() {
+		return databaseManager;
+	}
 }
