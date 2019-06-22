@@ -1,7 +1,6 @@
 package br.com.rkDev.terrain;
 
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,8 +13,7 @@ public class MinecraftTerrain extends JavaPlugin{
 	
 	public static MinecraftTerrain INSTACE;
 	private Economy economy;
-	
-	private FileConfiguration config;
+
 	private ConfigFile messages;
 	
 	private DatabaseManager databaseManager;
@@ -33,7 +31,6 @@ public class MinecraftTerrain extends JavaPlugin{
 		}
 		//Start de config
 		System.out.println("[rkTerrain] Carregando configurações...");
-		config = getConfig();
 		saveDefaultConfig();
 		setConfig();
 		
