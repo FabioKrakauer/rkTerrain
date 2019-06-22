@@ -35,6 +35,7 @@ public class MinecraftTerrain extends JavaPlugin{
 		System.out.println("[rkTerrain] Carregando configurações...");
 		config = getConfig();
 		saveDefaultConfig();
+		setConfig();
 		
 		messages = new ConfigFile(this, "messages.yml");
 		setConfigMessages();
@@ -63,10 +64,6 @@ public class MinecraftTerrain extends JavaPlugin{
 	
 	public Economy getEconomy() {
 		return economy;
-	}
-	
-	public FileConfiguration getConfig() {
-		return config;
 	}
 	
 	public ConfigFile getMessages() {
