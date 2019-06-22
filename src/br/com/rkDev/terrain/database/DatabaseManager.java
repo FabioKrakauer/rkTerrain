@@ -18,7 +18,7 @@ public class DatabaseManager {
 		String password = config.getString("MySQL.Password");
 		this.database = new Database(host, port, database, user, password);
 		
-		
+		addCommandSetup("CREATE TABLE IF NOT EXISTS `user` ( `id` INT(15) NULL AUTO_INCREMENT , `name` VARCHAR(16) NOT NULL , `uuid` VARCHAR(40) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
 	}
 	public Database getDatabase() {
 		return this.database;
