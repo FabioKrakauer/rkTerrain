@@ -43,6 +43,7 @@ public class MinecraftTerrain extends JavaPlugin{
 		System.out.println("[rkTerrain] Carregando managers...");
 		
 		databaseManager = new DatabaseManager();
+		databaseManager.setup();
 		userManager = new UserManager();
 		
 		System.out.println("[rkTerrain] Managers Carregados!");
