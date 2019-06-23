@@ -30,6 +30,14 @@ public class UserManager {
 		}
 		return null;
 	}
+	public User getUser(Integer id) {
+		for(Entry<UUID, User> entry : users.entrySet()) {
+			if(entry.getValue().getId() == id) {
+				return entry.getValue();
+			}
+		}
+		return null;
+	}
 	
 	public void removeUser(UUID unique) {
 		if(getUser(unique) != null) {
