@@ -12,6 +12,7 @@ public class UserManager {
 	public UserManager() {
 		users = new HashMap<UUID, User>();
 		cache = new UserCache(this);
+		new UserListener();
 	}
 	
 	public HashMap<UUID, User> getUsers() {
