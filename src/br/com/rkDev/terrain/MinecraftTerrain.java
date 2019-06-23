@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import br.com.rkDev.terrain.config.ConfigFile;
 import br.com.rkDev.terrain.database.DatabaseManager;
+import br.com.rkDev.terrain.manage.TerrainManager;
 import br.com.rkDev.terrain.user.UserManager;
 import net.milkbowl.vault.economy.Economy;
 
@@ -18,6 +19,7 @@ public class MinecraftTerrain extends JavaPlugin{
 	
 	private DatabaseManager databaseManager;
 	private UserManager userManager;
+	private TerrainManager terrainManager;
 	
 	public void onEnable() {
 		INSTACE = this;
@@ -45,6 +47,7 @@ public class MinecraftTerrain extends JavaPlugin{
 		databaseManager = new DatabaseManager();
 		databaseManager.setup();
 		userManager = new UserManager();
+		terrainManager = new TerrainManager();
 		
 		System.out.println("[rkTerrain] Managers Carregados!");
 	}
@@ -92,5 +95,9 @@ public class MinecraftTerrain extends JavaPlugin{
 	
 	public UserManager getUserManager() {
 		return userManager;
+	}
+	
+	public TerrainManager getTerrainManager() {
+		return terrainManager;
 	}
 }
