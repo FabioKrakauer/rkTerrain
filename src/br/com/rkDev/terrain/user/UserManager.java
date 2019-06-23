@@ -7,9 +7,11 @@ import java.util.UUID;
 public class UserManager {
 	
 	private HashMap<UUID, User> users;
+	private UserCache cache;
 	
 	public UserManager() {
 		users = new HashMap<UUID, User>();
+		cache = new UserCache(this);
 	}
 	
 	public HashMap<UUID, User> getUsers() {
@@ -38,5 +40,8 @@ public class UserManager {
 	public void addUser(User user) {
 		removeUser(user.getUUID());
 		users.put(user.getUUID(), user);
+	}
+	public UserCache getCache() {
+		return cache;
 	}
 }
