@@ -35,7 +35,7 @@ public class UserManager {
 		}
 	}
 	
-	public void setUser(User user) {
+	public void addUser(User user) {
 		removeUser(user.getUUID());
 		users.put(user.getUUID(), user);
 	}
