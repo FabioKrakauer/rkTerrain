@@ -96,6 +96,7 @@ public class MinecraftTerrain extends JavaPlugin{
 			getConfig().set("Terreno.PermissaoAdmin", "rkterrain.admin");
 			getConfig().set("Terreno.BlocoParede", "188:0");
 			getConfig().set("Terreno.PrecoQuadrado", 1000);
+			getConfig().set("Terreno.TerrenoPorPlayerPadrao", 2);
 			saveConfig();
 		}
 	}
