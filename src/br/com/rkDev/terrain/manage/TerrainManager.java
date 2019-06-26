@@ -61,4 +61,22 @@ public class TerrainManager {
 	public TerrainCache getCache() {
 		return cache;
 	}
+	
+	public Cuboid generateCuboid(Location location, int radius) {
+		int size = radius;
+		double x = location.getX();
+		double z = location.getZ();
+		
+		double x1 = x + (size / 2);
+		double y1 = 0;
+		double z1 = z + (size / 2);
+		
+		double x2 = x - (size / 2);
+		double y2 = location.getWorld().getMaxHeight();
+		double z2 = z - (size / 2);
+		
+		Location loc1 = new Location(location.getWorld(), x1, y1, z1);
+		Location loc2 = new Location(location.getWorld(), x2, y2, z2);
+		return new Cuboid(loc1, loc2);
+	}
 }
