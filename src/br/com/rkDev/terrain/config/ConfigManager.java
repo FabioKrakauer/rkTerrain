@@ -37,6 +37,10 @@ public class ConfigManager {
 			erro = "Preco por bloco ao quadrado";
 		}
 		
+		if(getDefaultPlayerTerrainQuantity() == 0) {
+			error = true;
+			erro = "Quantidade padrao de terrenos por player";
+		}
 		if(error) {
 			Bukkit.getConsoleSender().sendMessage("§c----------------------------------------------");
 			Bukkit.getConsoleSender().sendMessage("§cErro na CONFIG do plugin! Apague o arquivo e reinicie o servidor!");
@@ -65,6 +69,9 @@ public class ConfigManager {
 		return getMain().getConfig().getInt("Terreno.PrecoQuadrado");
 	}
 	
+	public Integer getDefaultPlayerTerrainQuantity() {
+		return getMain().getConfig().getInt("Terreno.TerrenoPorPlayerPadrao");
+	}
 	private MinecraftTerrain getMain() {
 		return main;
 	}
