@@ -34,7 +34,7 @@ public class ConfigManager {
 		}
 		if(getPriceBlock() == 0) {
 			error = true;
-			erro = "Preço por bloco ao quadrado";
+			erro = "Preco por bloco ao quadrado";
 		}
 		
 		if(error) {
@@ -42,7 +42,6 @@ public class ConfigManager {
 			Bukkit.getConsoleSender().sendMessage("§cErro na CONFIG do plugin! Apague o arquivo e reinicie o servidor!");
 			Bukkit.getConsoleSender().sendMessage("§cErro: " + erro + "!");
 			Bukkit.getConsoleSender().sendMessage("§c----------------------------------------------");
-			Bukkit.shutdown();
 		}
 	}
 	
@@ -63,7 +62,7 @@ public class ConfigManager {
 	}
 	
 	public Integer getPriceBlock() {
-		return getMain().getConfig().getInt("Terreno.PreçoQuadrado");
+		return getMain().getConfig().getInt("Terreno.PrecoQuadrado");
 	}
 	
 	private MinecraftTerrain getMain() {

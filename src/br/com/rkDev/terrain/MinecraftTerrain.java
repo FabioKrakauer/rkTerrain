@@ -95,7 +95,7 @@ public class MinecraftTerrain extends JavaPlugin{
 			getConfig().set("Terreno.Tamanho_Minimo", 10);
 			getConfig().set("Terreno.PermissaoAdmin", "rkterrain.admin");
 			getConfig().set("Terreno.BlocoParede", "188:0");
-			getConfig().set("Terreno.PreçoQuadrado", "1000");
+			getConfig().set("Terreno.PrecoQuadrado", 1000);
 			saveConfig();
 		}
 	}
