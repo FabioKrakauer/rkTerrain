@@ -37,11 +37,11 @@ public class TerrainCache {
 	}
 	public void downloadTerrains(Integer terrain_id) {
 		try {
-			Query selectTerrains = new Query("SELECT * FROM `terrain`");
+			Query selectTerrains = new Query("SELECT * FROM `terrain` WHERE `id`='" + terrain_id + "'");
 			ResultSet terrain = selectTerrains.getResultSet();
-			while(terrain.next()) {
+			if(terrain.next()) {
 				HashSet<User> friends = new HashSet<User>();
-				Query selectFriends = new Query("SELECT * FROM `user_terrain` WHERE `terrain_id`='"+terrain.getInt("id")+"'");
+				Query selectFriends = new Query("SELECT * FROM `user_terrain` WHERE `terrain_id`='"+terrain_id+"'");
 				ResultSet friendsSet = selectFriends.getResultSet();
 				while(friendsSet.next()) {
 					friends.add(MinecraftTerrain.getInstance().getUserManager().getUser(friendsSet.getInt("user_id")));
