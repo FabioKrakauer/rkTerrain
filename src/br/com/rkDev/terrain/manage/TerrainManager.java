@@ -11,9 +11,11 @@ import br.com.rkDev.terrain.user.User;
 public class TerrainManager {
 	
 	private HashMap<Integer, Terrain> terrains;
+	private TerrainCache cache;
 	
 	public TerrainManager() {
 		terrains = new HashMap<Integer, Terrain>();
+		cache = new TerrainCache(this);
 	}
 	
 	public Terrain getTerrain(Integer id) {
@@ -54,5 +56,9 @@ public class TerrainManager {
 			}
 		}
 		return terrain;
+	}
+	
+	public TerrainCache getCache() {
+		return cache;
 	}
 }
