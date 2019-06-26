@@ -28,7 +28,15 @@ public class TerrainManager {
 		}
 		return null;
 	}
-	
+	public void removeTerrain(Terrain terrain) {
+		if(terrains.containsKey(terrain.getId())) {
+			terrains.remove(terrain.getId());
+		}
+	}
+	public void addTerrain(Terrain terrain) {
+		removeTerrain(terrain);
+		terrains.put(terrain.getId(), terrain);
+	}
 	public HashSet<Terrain> getUserTerrains(User user){
 		HashSet<Terrain> terrain = new HashSet<Terrain>();
 		for(Entry<Integer, Terrain> entry : terrains.entrySet()) {
