@@ -35,6 +35,4 @@ public class UserListener implements Listener{
 			MinecraftTerrain.getInstance().getUserManager().getCache().downloadUser(user.getId());
 		}
 	}
-	
-
 }
