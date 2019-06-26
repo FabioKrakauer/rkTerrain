@@ -19,7 +19,7 @@ public class Terrain {
 	private User owner;
 	private Cuboid cuboid;
 	private Location spawn;
-	private boolean sale;
+	private double sale;
 	
 	private HashSet<User> friends;
 	
@@ -31,7 +31,7 @@ public class Terrain {
 		this.cuboid = new Cuboid(json);
 		JsonObject spawnJson = (JsonObject)parser.parse(terrain.getString("spawn"));
 		this.spawn = new Location(Bukkit.getWorld(spawnJson.get("world").getAsString()), spawnJson.get("x").getAsDouble(), spawnJson.get("Y").getAsDouble(), spawnJson.get("z").getAsDouble(), spawnJson.get("yaw").getAsFloat(), spawnJson.get("pitch").getAsFloat());
-		this.sale = (terrain.getInt("sale") == 1) ? true : false;
+		this.sale = terrain.getInt("sale");
 	}
 
 	public Integer getId() {
@@ -55,6 +55,10 @@ public class Terrain {
 	}
 	
 	public boolean isOnSale() {
+		return sale > 0;
+	}
+	
+	public double getSaleValue() {
 		return sale;
 	}
 
