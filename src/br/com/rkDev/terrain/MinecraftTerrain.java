@@ -5,6 +5,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import br.com.rkDev.terrain.config.ConfigFile;
+import br.com.rkDev.terrain.config.ConfigManager;
 import br.com.rkDev.terrain.database.DatabaseManager;
 import br.com.rkDev.terrain.manage.TerrainManager;
 import br.com.rkDev.terrain.user.UserManager;
@@ -17,6 +18,7 @@ public class MinecraftTerrain extends JavaPlugin{
 
 	private ConfigFile messages;
 	
+	private ConfigManager configManager;
 	private DatabaseManager databaseManager;
 	private UserManager userManager;
 	private TerrainManager terrainManager;
@@ -44,6 +46,7 @@ public class MinecraftTerrain extends JavaPlugin{
 		//managers
 		System.out.println("[rkTerrain] Carregando managers...");
 		
+		configManager = new ConfigManager();
 		databaseManager = new DatabaseManager();
 		databaseManager.setup();
 		userManager = new UserManager();
@@ -107,5 +110,9 @@ public class MinecraftTerrain extends JavaPlugin{
 	
 	public TerrainManager getTerrainManager() {
 		return terrainManager;
+	}
+	
+	public ConfigManager getConfigManager() {
+		return configManager;
 	}
 }
