@@ -87,6 +87,14 @@ public class MinecraftTerrain extends JavaPlugin{
 			getConfig().set("MySQL.Password", "");
 			saveConfig();
 		}
+		if(getConfig().isConfigurationSection("Terreno") == false) {
+			getConfig().set("Terreno.Tamanho_Maximo", 100);
+			getConfig().set("Terreno.Tamanho_Minimo", 10);
+			getConfig().set("Terreno.PermissaoAdmin", "rkterrain.admin");
+			getConfig().set("Terreno.BlocoParede", "188:0");
+			getConfig().set("Terreno.PreçoQuadrado", "1000");
+			saveConfig();
+		}
 	}
 	
 	public DatabaseManager getDatabaseManager() {
