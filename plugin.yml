@@ -4,3 +4,5 @@ author: rKFabio
 version: 0.01
 depend: [Vault]
 description: Licensed-rKTeste
+commands:
+  terreno:

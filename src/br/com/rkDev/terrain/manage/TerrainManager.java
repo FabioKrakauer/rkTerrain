@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 
 import org.bukkit.Location;
 
+import br.com.rkDev.terrain.commands.TerrainCommand;
 import br.com.rkDev.terrain.user.User;
 
 public class TerrainManager {
@@ -16,6 +17,7 @@ public class TerrainManager {
 	public TerrainManager() {
 		terrains = new HashMap<Integer, Terrain>();
 		cache = new TerrainCache(this);
+		new TerrainCommand();
 	}
 	
 	public Terrain getTerrain(Integer id) {
