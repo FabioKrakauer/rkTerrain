@@ -56,4 +56,14 @@ public class User {
 		}
 		return MinecraftTerrain.getInstance().getConfigManager().getDefaultPlayerTerrainQuantity();
 	}
+	
+	public double getMoney() {
+		return MinecraftTerrain.getInstance().getEconomy().getBalance(Bukkit.getPlayer(getName()));
+	}
+	public void removeMoney(double quantity) {
+		MinecraftTerrain.getInstance().getEconomy().withdrawPlayer(Bukkit.getPlayer(getName()), quantity);
+	}
+	public void addMoney(double quantity) {
+		MinecraftTerrain.getInstance().getEconomy().depositPlayer(Bukkit.getPlayer(getName()), quantity);
+	}
 }
