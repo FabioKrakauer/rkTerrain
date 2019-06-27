@@ -33,6 +33,9 @@ public class User {
 		return uuid;
 	}
 	
+	public boolean isAdmin() {
+		return Bukkit.getPlayer(getName()).hasPermission(MinecraftTerrain.getInstance().getConfigManager().getAdminPermission());
+	}
 	public Integer getMaxTerrain() {
 		for(PermissionAttachmentInfo info : Bukkit.getPlayer(getName()).getEffectivePermissions()) {
 			if(info.getPermission().contains("rkterrain.maxterrain.")) {
