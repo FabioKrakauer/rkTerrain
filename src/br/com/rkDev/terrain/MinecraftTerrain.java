@@ -91,6 +91,10 @@ public class MinecraftTerrain extends JavaPlugin{
 			getMessages().getConfig().set("TerrenoNaoAVenda", "&eEste terreno não esta a venda!");
 			getMessages().saveConfig();
 		}
+		if(getMessages().getConfig().getString("Maximo_Terrenos") == null) {
+			getMessages().getConfig().set("Maximo_Terreno", "&cVocê ja possui o maximo terrenos de %quantidade%");
+			getMessages().saveConfig();
+		}
 	}
 	
 	public void setConfig() {
