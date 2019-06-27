@@ -83,6 +83,10 @@ public class MinecraftTerrain extends JavaPlugin{
 			getMessages().getConfig().set("Somente_Players", "&cSomentes players podem digitar este comando!");
 			getMessages().saveConfig();
 		}
+		if(getMessages().getConfig().getString("Uso_Correto") == null) {
+			getMessages().getConfig().set("Uso_Correto", "&eForma incorreta! Digite: &f%comando%");
+			getMessages().saveConfig();
+		}
 	}
 	
 	public void setConfig() {
