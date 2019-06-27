@@ -87,6 +87,10 @@ public class MinecraftTerrain extends JavaPlugin{
 			getMessages().getConfig().set("Uso_Correto", "&eForma incorreta! Digite: &f%comando%");
 			getMessages().saveConfig();
 		}
+		if(getMessages().getConfig().getString("TerrenoNaoAVenda") == null) {
+			getMessages().getConfig().set("TerrenoNaoAVenda", "&eEste terreno não esta a venda!");
+			getMessages().saveConfig();
+		}
 	}
 	
 	public void setConfig() {
