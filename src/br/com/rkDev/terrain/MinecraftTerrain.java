@@ -80,7 +80,7 @@ public class MinecraftTerrain extends JavaPlugin{
 			getMessages().saveConfig();
 		}
 		if(getMessages().getConfig().getString("Somente_Players") == null) {
-			getMessages().getConfig().set("Somente_Players", "&cSomentes player podem digitar este comando!");
+			getMessages().getConfig().set("Somente_Players", "&cSomentes players podem digitar este comando!");
 			getMessages().saveConfig();
 		}
 	}
