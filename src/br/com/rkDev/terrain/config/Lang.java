@@ -12,7 +12,7 @@ public enum Lang {
 		message = messag;
 	}
 	public String build() {
-		return message;
+		return message.replace("&", "§");
 	}
 	
 }
