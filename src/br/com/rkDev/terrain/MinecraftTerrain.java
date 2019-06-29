@@ -88,11 +88,19 @@ public class MinecraftTerrain extends JavaPlugin{
 			getMessages().saveConfig();
 		}
 		if(getMessages().getConfig().getString("TerrenoNaoAVenda") == null) {
-			getMessages().getConfig().set("TerrenoNaoAVenda", "&eEste terreno não esta a venda!");
+			getMessages().getConfig().set("TerrenoNaoAVenda", "&eEste terreno nao esta a venda!");
 			getMessages().saveConfig();
 		}
-		if(getMessages().getConfig().getString("Maximo_Terrenos") == null) {
-			getMessages().getConfig().set("Maximo_Terreno", "&cVocê ja possui o maximo terrenos de %quantidade%");
+		if(getMessages().getConfig().getString("Maximo_Terreno") == null) {
+			getMessages().getConfig().set("Maximo_Terreno", "&cVoce ja possui o maximo terrenos de %quantidade%");
+			getMessages().saveConfig();
+		}
+		if(getMessages().getConfig().getString("Saldo_Insuficiente") == null) {
+			getMessages().getConfig().set("Saldo_Insuficiente", "&eSaldo insuficiente! Este terreno custa %valor%!");
+			getMessages().saveConfig();
+		}
+		if(getMessages().getConfig().getString("TerrenoNaoEncontrado") == null) {
+			getMessages().getConfig().set("TerrenoNaoEncontrado", "&cVoce nao esta sobre nenhum terreno!");
 			getMessages().saveConfig();
 		}
 	}

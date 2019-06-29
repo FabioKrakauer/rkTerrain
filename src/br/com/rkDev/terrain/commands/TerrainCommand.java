@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import br.com.rkDev.terrain.MinecraftTerrain;
+import br.com.rkDev.terrain.commands.subcommand.BuyCommand;
 import br.com.rkDev.terrain.config.Lang;
 import br.com.rkDev.terrain.user.User;
 
@@ -33,6 +34,11 @@ public class TerrainCommand implements CommandExecutor{
 				if(user.isAdmin()) {
 					p.sendMessage("§e/terreno bypass §8- §7Ativa modo administrador dentro dos terrenos!");
 				}
+				return true;
+			}
+			String command = args[0];
+			if(command.equalsIgnoreCase("comprar")) {
+				new BuyCommand(user, args);
 			}
 		}
 		return false;
