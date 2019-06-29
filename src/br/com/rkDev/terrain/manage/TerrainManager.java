@@ -32,6 +32,14 @@ public class TerrainManager {
 		}
 		return null;
 	}
+	public Terrain intersectTerrain(Cuboid cuboid) {
+		for(Entry<Integer, Terrain> entry : terrains.entrySet()) {
+			if(entry.getValue().getCuboid().intersect(cuboid)) {
+				return entry.getValue();
+			}
+		}
+		return null;
+	}
 	public void removeTerrain(Terrain terrain) {
 		if(terrains.containsKey(terrain.getId())) {
 			terrains.remove(terrain.getId());
