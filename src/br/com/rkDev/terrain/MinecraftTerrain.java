@@ -103,6 +103,34 @@ public class MinecraftTerrain extends JavaPlugin{
 			getMessages().getConfig().set("TerrenoNaoEncontrado", "&cVoce nao esta sobre nenhum terreno!");
 			getMessages().saveConfig();
 		}
+		if(getMessages().getConfig().getString("Terreno_Comprado") == null) {
+			getMessages().getConfig().set("Terreno_Comprado", "&aVocê comprou o terreno por %valor%!");
+			getMessages().saveConfig();
+		}
+		if(getMessages().getConfig().getString("DigiteSomenteNumeros") == null) {
+			getMessages().getConfig().set("DigiteSomenteNumeros", "&cDigite somente números!");
+			getMessages().saveConfig();
+		}
+		if(getMessages().getConfig().getString("VoceEsteSobreUmTerreno") == null) {
+			getMessages().getConfig().set("VoceEsteSobreUmTerreno", "&eVoce esta sobre um terreno!");
+			getMessages().saveConfig();
+		}
+		if(getMessages().getConfig().getString("Tamanho_Minimo") == null) {
+			getMessages().getConfig().set("Tamanho_Minimo", "&cO tamanho do terreno deve ser no minimo %tamanho%");
+			getMessages().saveConfig();
+		}
+		if(getMessages().getConfig().getString("Tamanho_Maximo") == null) {
+			getMessages().getConfig().set("Tamanho_Maximo", "&cO tamanho do terreno deve ser no maximo %tamanho%");
+			getMessages().saveConfig();
+		}
+		if(getMessages().getConfig().getString("ComprarProprioTerreno") == null) {
+			getMessages().getConfig().set("ComprarProprioTerreno", "&eVocê não pode comprar seu proprio terreno!");
+			getMessages().saveConfig();
+		}
+		if(getMessages().getConfig().getString("Tamanho_Par") == null) {
+			getMessages().getConfig().set("Tamanho_Par", "&eO tamanho do terreno deve ser um numero par!");
+			getMessages().saveConfig();
+		}
 	}
 	
 	public void setConfig() {
@@ -118,11 +146,10 @@ public class MinecraftTerrain extends JavaPlugin{
 			getConfig().set("Terreno.Tamanho_Maximo", 100);
 			getConfig().set("Terreno.Tamanho_Minimo", 10);
 			getConfig().set("Terreno.PermissaoAdmin", "rkterrain.admin");
-			getConfig().set("Terreno.BlocoParede", "188:0");
+//			getConfig().set("Terreno.BlocoParede", "188:0");
 			getConfig().set("Terreno.PrecoQuadrado", 1000);
 			getConfig().set("Terreno.TerrenoPorPlayerPadrao", 2);
 			getConfig().set("Terreno.ComprarProprioTerreno", "&cVocê não pode comprar seu proprio terreno!");
-			getConfig().set("Terreno.Terreno_Comprado", "&aVocê comprou o terreno por %valor%!");
 			saveConfig();
 		}
 	}

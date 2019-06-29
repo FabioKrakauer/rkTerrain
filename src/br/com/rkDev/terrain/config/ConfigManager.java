@@ -28,10 +28,10 @@ public class ConfigManager {
 			error = true;
 			erro = "Permissao do administrador";
 		}
-		if(getWallBlock() == null) {
-			error = true;
-			erro = "Bloco da parede";
-		}
+//		if(getWallBlock() == null) {
+//			error = true;
+//			erro = "Bloco da parede";
+//		}
 		if(getPriceBlock() == 0) {
 			error = true;
 			erro = "Preco por bloco ao quadrado";

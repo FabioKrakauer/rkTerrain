@@ -9,12 +9,12 @@ import com.mysql.jdbc.PreparedStatement;
 import br.com.rkDev.terrain.MinecraftTerrain;
 
 public class Query {
-	
+
 	private Database database;
 	private String query;
 	private Connection con;
 	private PreparedStatement statement;
-	
+
 	public Query(String query) {
 		this.database = MinecraftTerrain.getInstance().getDatabaseManager().getDatabase();
 		this.con = this.database.getConnection();
@@ -39,18 +39,25 @@ public class Query {
 	public PreparedStatement getStatement() {
 		return this.statement;
 	}
-	public int insertGetID(String columns) throws SQLException {
-		int id = -1;
-		String[] col = { columns };
-		this.statement = (PreparedStatement)this.con.prepareStatement(this.query, col);
-		
-		this.statement.executeUpdate();
-		
-		ResultSet rs = this.statement.getGeneratedKeys();
-		if(rs.next()) {
-			id = rs.getInt(1);
+	
+	public int insertGetID(String columns){
+		try {
+
+			int id = -1;
+			String[] col = { columns };
+			this.statement = (PreparedStatement)this.con.prepareStatement(this.query, col);
+
+			this.statement.executeUpdate();
+
+			ResultSet rs = this.statement.getGeneratedKeys();
+			if(rs.next()) {
+				id = rs.getInt(1);
+			}
+			return id;
+		}catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
 		}
-		return id;
 	}
 
 }

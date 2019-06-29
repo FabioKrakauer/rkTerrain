@@ -1,7 +1,5 @@
 package br.com.rkDev.terrain.user;
 
-import java.sql.SQLException;
-
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -21,12 +19,7 @@ public class UserListener implements Listener{
 		String name = e.getName();
 		if(MinecraftTerrain.getInstance().getUserManager().getUser(name) == null && MinecraftTerrain.getInstance().getUserManager().getUser(e.getUniqueId()) == null) {
 			Query add = new Query("INSERT INTO `user`(`id`, `name`, `uuid`) VALUES (NULL, '"+name+"', '"+e.getUniqueId().toString()+"')");
-			int userID = 0;
-			try {
-				userID = add.insertGetID("id");
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
+			int userID = add.insertGetID("id");
 			MinecraftTerrain.getInstance().getUserManager().getCache().downloadUser(userID);
 		}else if(MinecraftTerrain.getInstance().getUserManager().getUser(name) == null && MinecraftTerrain.getInstance().getUserManager().getUser(e.getUniqueId()) != null) {
 			User user = MinecraftTerrain.getInstance().getUserManager().getUser(e.getUniqueId());

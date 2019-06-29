@@ -30,7 +30,7 @@ public class Terrain {
 		JsonObject json = (JsonObject) parser.parse(terrain.getString("cuboid"));
 		this.cuboid = new Cuboid(json);
 		JsonObject spawnJson = (JsonObject)parser.parse(terrain.getString("spawn"));
-		this.spawn = new Location(Bukkit.getWorld(spawnJson.get("world").getAsString()), spawnJson.get("x").getAsDouble(), spawnJson.get("Y").getAsDouble(), spawnJson.get("z").getAsDouble(), spawnJson.get("yaw").getAsFloat(), spawnJson.get("pitch").getAsFloat());
+		this.spawn = new Location(Bukkit.getWorld(spawnJson.get("world").getAsString()), spawnJson.get("x").getAsDouble(), spawnJson.get("y").getAsDouble(), spawnJson.get("z").getAsDouble(), spawnJson.get("yaw").getAsFloat(), spawnJson.get("pitch").getAsFloat());
 		this.sale = terrain.getInt("sale");
 	}
 
