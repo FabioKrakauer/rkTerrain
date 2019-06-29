@@ -121,6 +121,8 @@ public class MinecraftTerrain extends JavaPlugin{
 			getConfig().set("Terreno.BlocoParede", "188:0");
 			getConfig().set("Terreno.PrecoQuadrado", 1000);
 			getConfig().set("Terreno.TerrenoPorPlayerPadrao", 2);
+			getConfig().set("Terreno.ComprarProprioTerreno", "&cVocê não pode comprar seu proprio terreno!");
+			getConfig().set("Terreno.Terreno_Comprado", "&aVocê comprou o terreno por %valor%!");
 			saveConfig();
 		}
 	}

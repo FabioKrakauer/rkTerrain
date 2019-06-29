@@ -14,9 +14,11 @@ public enum Lang {
 	TERRAIN_NOTSALE(MinecraftTerrain.getInstance().getMessages().getConfig().getString("TerrenoNaoAVenda")),
 	MAX_TERRAINS(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Maximo_Terrenos")),
 	NULL_TERRAIN(MinecraftTerrain.getInstance().getMessages().getConfig().getString("TerrenoNaoEncontrado")),
+	NOT_BUY_OWN_TERRAIN(MinecraftTerrain.getInstance().getMessages().getConfig().getString("ComprarProprioTerreno")),
+	BROUGHT_TERRAIN(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Terreno_Comprado")),
 	;
 	
-//	
+//	Terreno_Comprado
 	public String message;
 	Lang(String messag){
 		message = messag;

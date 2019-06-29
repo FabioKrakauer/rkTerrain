@@ -58,12 +58,12 @@ public class User {
 	}
 	
 	public double getMoney() {
-		return MinecraftTerrain.getInstance().getEconomy().getBalance(Bukkit.getPlayer(getName()));
+		return MinecraftTerrain.getInstance().getEconomy().getBalance(Bukkit.getOfflinePlayer(getUUID()));
 	}
 	public void removeMoney(double quantity) {
-		MinecraftTerrain.getInstance().getEconomy().withdrawPlayer(Bukkit.getPlayer(getName()), quantity);
+		MinecraftTerrain.getInstance().getEconomy().withdrawPlayer(Bukkit.getOfflinePlayer(getUUID()), quantity);
 	}
 	public void addMoney(double quantity) {
-		MinecraftTerrain.getInstance().getEconomy().depositPlayer(Bukkit.getPlayer(getName()), quantity);
+		MinecraftTerrain.getInstance().getEconomy().depositPlayer(Bukkit.getOfflinePlayer(getUUID()), quantity);
 	}
 }
