@@ -43,7 +43,7 @@ public class BuyCommand {
 				p.sendMessage(Lang.TERRAIN_NOTSALE.build());
 				return;
 			}
-			if(user.getMaxTerrain() >= MinecraftTerrain.getInstance().getTerrainManager().getUserTerrains(user).size()) {
+			if(MinecraftTerrain.getInstance().getTerrainManager().getUserTerrains(user).size() >= user.getMaxTerrain()) {
 				p.sendMessage(Lang.MAX_TERRAINS.build().replace("%quantidade%", user.getMaxTerrain().toString()));
 				return;
 			}
@@ -59,6 +59,7 @@ public class BuyCommand {
 			user.removeMoney(terrain.getSaleValue());
 			
 			p.sendMessage(Lang.BROUGHT_TERRAIN.build().replace("%valor%", terrain.getSaleValue() + ""));
+			MinecraftTerrain.getInstance().getTerrainManager().getCache().downloadTerrain(terrain.getId());
 			return;
 		}
 		if(!Utils.isInteger(args[1])) {
@@ -91,6 +92,11 @@ public class BuyCommand {
 			return;
 		}
 		Cuboid cuboid = MinecraftTerrain.getInstance().getTerrainManager().generateCuboid(p.getLocation(), Integer.parseInt(args[1]));
+		
+		if(MinecraftTerrain.getInstance().getTerrainManager().intersectTerrain(cuboid) != null) {
+			p.sendMessage(Lang.TERRAIN_INTERSECT.build());
+			return;
+		}
 		String json = cuboid.toJson().toString();
 		
 		JsonObject spawnObject = new JsonObject();
@@ -107,7 +113,7 @@ public class BuyCommand {
 		Query insertTerrain = new Query("INSERT INTO `terrain` (`id`, `user_id`, `cuboid`, `spawn`, `sale`) VALUES (NULL, '"+user.getId()+"', '"+json+"', '"+spawn+"', '0')");
 		int terrainId = insertTerrain.insertGetID("id");
 		
-		MinecraftTerrain.getInstance().getTerrainManager().getCache().downloadTerrains(terrainId);
+		MinecraftTerrain.getInstance().getTerrainManager().getCache().downloadTerrain(terrainId);
 		for(Location loc : cuboid.getWalls((int)p.getLocation().getY())) {
 			loc.getBlock().setType(Material.FENCE);
 		}

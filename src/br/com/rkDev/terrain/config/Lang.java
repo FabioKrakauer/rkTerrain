@@ -21,9 +21,10 @@ public enum Lang {
 	MIN_TERRAIN_SIZE(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Tamanho_Minimo")),
 	MAX_TERRAIN_SIZE(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Tamanho_Maximo")),
 	PAR_SIZE(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Tamanho_Par")),
+	TERRAIN_INTERSECT(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Terreno_Intersecao")),
 	;
 	
-//	Tamanho_Par
+//	Terreno_Intersecao
 	public String message;
 	Lang(String messag){
 		message = messag;

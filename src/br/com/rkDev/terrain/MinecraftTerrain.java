@@ -131,6 +131,10 @@ public class MinecraftTerrain extends JavaPlugin{
 			getMessages().getConfig().set("Tamanho_Par", "&eO tamanho do terreno deve ser um numero par!");
 			getMessages().saveConfig();
 		}
+		if(getMessages().getConfig().getString("Terreno_Intersecao") == null) {
+			getMessages().getConfig().set("Terreno_Intersecao", "&eExiste um terreno que intercede o seu novo terreno.");
+			getMessages().saveConfig();
+		}
 	}
 	
 	public void setConfig() {
@@ -149,7 +153,6 @@ public class MinecraftTerrain extends JavaPlugin{
 //			getConfig().set("Terreno.BlocoParede", "188:0");
 			getConfig().set("Terreno.PrecoQuadrado", 1000);
 			getConfig().set("Terreno.TerrenoPorPlayerPadrao", 2);
-			getConfig().set("Terreno.ComprarProprioTerreno", "&cVocê não pode comprar seu proprio terreno!");
 			saveConfig();
 		}
 	}
