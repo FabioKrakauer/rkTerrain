@@ -35,7 +35,7 @@ public class TerrainCache {
 			e.printStackTrace();
 		}
 	}
-	public void downloadTerrains(Integer terrain_id) {
+	public void downloadTerrain(Integer terrain_id) {
 		try {
 			Query selectTerrains = new Query("SELECT * FROM `terrain` WHERE `id`='" + terrain_id + "'");
 			ResultSet terrain = selectTerrains.getResultSet();
