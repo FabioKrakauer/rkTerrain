@@ -80,7 +80,7 @@ public class MinecraftTerrain extends JavaPlugin{
 			getMessages().saveConfig();
 		}
 		if(getMessages().getConfig().getString("ComandoNaoEncontrado") == null) {
-			getMessages().getConfig().set("ComandoNaoEncontrado", "&eExiste um terreno que intercede o seu novo terreno.");
+			getMessages().getConfig().set("ComandoNaoEncontrado", "&cComando não encontrado!");
 			getMessages().saveConfig();
 		}
 		if(getMessages().getConfig().getString("Somente_Players") == null) {
