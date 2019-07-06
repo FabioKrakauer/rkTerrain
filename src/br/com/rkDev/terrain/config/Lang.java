@@ -24,9 +24,12 @@ public enum Lang {
 	MAX_TERRAIN_SIZE(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Tamanho_Maximo")),
 	PAR_SIZE(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Tamanho_Par")),
 	TERRAIN_INTERSECT(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Terreno_Intersecao")),
+	NOT_YOUR_TERRAIN(MinecraftTerrain.getInstance().getMessages().getConfig().getString("NaoESeuTerreno")),
+	IS_ON_SALE(MinecraftTerrain.getInstance().getMessages().getConfig().getString("TerrenoJaAVenda")),
+	TERRAIN_ANNOUCED(MinecraftTerrain.getInstance().getMessages().getConfig().getString("TerrenoAVenda")),
 	;
 	
-//	DigiteSomenteNumerosDecimal
+//	TerrenoAVenda
 	public String message;
 	Lang(String messag){
 		message = messag;

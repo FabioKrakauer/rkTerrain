@@ -143,6 +143,18 @@ public class MinecraftTerrain extends JavaPlugin{
 			getMessages().getConfig().set("Terreno_Intersecao", "&eExiste um terreno que intercede o seu novo terreno.");
 			getMessages().saveConfig();
 		}
+		if(getMessages().getConfig().getString("NaoESeuTerreno") == null) {
+			getMessages().getConfig().set("NaoESeuTerreno", "&eEste terreno não é seu!");
+			getMessages().saveConfig();
+		}
+		if(getMessages().getConfig().getString("TerrenoJaAVenda") == null) {
+			getMessages().getConfig().set("TerrenoJaAVenda", "&eEste terreno ja esta a venda!");
+			getMessages().saveConfig();
+		}
+		if(getMessages().getConfig().getString("TerrenoAVenda") == null) {
+			getMessages().getConfig().set("TerrenoAVenda", "&aVocê anunciou seu terreno por %valor% com sucesso!");
+			getMessages().saveConfig();
+		}
 	}
 	
 	public void setConfig() {
