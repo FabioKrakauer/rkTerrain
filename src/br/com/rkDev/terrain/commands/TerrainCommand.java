@@ -39,6 +39,8 @@ public class TerrainCommand implements CommandExecutor{
 			String command = args[0];
 			if(command.equalsIgnoreCase("comprar")) {
 				new BuyCommand(user, args);
+			}else {
+				
 			}
 		}
 		return false;

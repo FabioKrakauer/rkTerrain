@@ -79,6 +79,10 @@ public class MinecraftTerrain extends JavaPlugin{
 			getMessages().getConfig().set("SemPermissao", "&cVoce nao possui permissao!");
 			getMessages().saveConfig();
 		}
+		if(getMessages().getConfig().getString("ComandoNaoEncontrado") == null) {
+			getMessages().getConfig().set("ComandoNaoEncontrado", "&eExiste um terreno que intercede o seu novo terreno.");
+			getMessages().saveConfig();
+		}
 		if(getMessages().getConfig().getString("Somente_Players") == null) {
 			getMessages().getConfig().set("Somente_Players", "&cSomentes players podem digitar este comando!");
 			getMessages().saveConfig();
