@@ -115,6 +115,10 @@ public class MinecraftTerrain extends JavaPlugin{
 			getMessages().getConfig().set("DigiteSomenteNumeros", "&cDigite somente números!");
 			getMessages().saveConfig();
 		}
+		if(getMessages().getConfig().getString("DigiteSomenteNumerosDecimal") == null) {
+			getMessages().getConfig().set("DigiteSomenteNumerosDecimal", "&cDigite somente números com somente um ponto(.) para casa decimal!");
+			getMessages().saveConfig();
+		}
 		if(getMessages().getConfig().getString("VoceEsteSobreUmTerreno") == null) {
 			getMessages().getConfig().set("VoceEsteSobreUmTerreno", "&eVoce esta sobre um terreno!");
 			getMessages().saveConfig();

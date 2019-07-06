@@ -9,6 +9,7 @@ public enum Lang {
 	ONLY_PLAYER(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Somente_Players")),
 	INVALID_ARGS(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Uso_Correto")),
 	ONLY_NUMBERS(MinecraftTerrain.getInstance().getMessages().getConfig().getString("DigiteSomenteNumeros")),
+	ONLY_DOUBLE(MinecraftTerrain.getInstance().getMessages().getConfig().getString("DigiteSomenteNumerosDecimal")),
 	COMMAND_NOT_FOUND(MinecraftTerrain.getInstance().getMessages().getConfig().getString("ComandoNaoEncontrado")),
 	
 	NO_CREDITS(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Saldo_Insuficiente")),
@@ -25,7 +26,7 @@ public enum Lang {
 	TERRAIN_INTERSECT(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Terreno_Intersecao")),
 	;
 	
-//	ComandoNaoEncontrado
+//	DigiteSomenteNumerosDecimal
 	public String message;
 	Lang(String messag){
 		message = messag;
