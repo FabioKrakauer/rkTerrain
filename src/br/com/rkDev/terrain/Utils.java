@@ -1,5 +1,7 @@
 package br.com.rkDev.terrain;
 
+import java.text.DecimalFormat;
+
 public class Utils {
 	
 	public static boolean isInteger(String number) {
@@ -9,5 +11,8 @@ public class Utils {
 		}catch (NumberFormatException e) {
 			return false;
 		}
+	}
+	public static String formatDouble(double value) {
+		return new DecimalFormat("#,###.##").format(value);
 	}
 }
