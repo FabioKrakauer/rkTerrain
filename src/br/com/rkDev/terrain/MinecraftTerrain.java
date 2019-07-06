@@ -8,6 +8,7 @@ import br.com.rkDev.terrain.config.ConfigFile;
 import br.com.rkDev.terrain.config.ConfigManager;
 import br.com.rkDev.terrain.database.DatabaseManager;
 import br.com.rkDev.terrain.manage.TerrainManager;
+import br.com.rkDev.terrain.menu.PageableMenuManager;
 import br.com.rkDev.terrain.user.UserManager;
 import net.milkbowl.vault.economy.Economy;
 
@@ -22,6 +23,7 @@ public class MinecraftTerrain extends JavaPlugin{
 	private DatabaseManager databaseManager;
 	private UserManager userManager;
 	private TerrainManager terrainManager;
+	private PageableMenuManager pageManager;
 	
 	public void onEnable() {
 		INSTACE = this;
@@ -51,6 +53,7 @@ public class MinecraftTerrain extends JavaPlugin{
 		databaseManager.setup();
 		userManager = new UserManager();
 		terrainManager = new TerrainManager();
+		pageManager = new PageableMenuManager();
 		
 		System.out.println("[rkTerrain] Managers Carregados!");
 	}
@@ -191,5 +194,9 @@ public class MinecraftTerrain extends JavaPlugin{
 	
 	public ConfigManager getConfigManager() {
 		return configManager;
+	}
+	
+	public PageableMenuManager getPageableMenuManager() {
+		return pageManager;
 	}
 }
