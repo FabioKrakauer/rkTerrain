@@ -32,6 +32,7 @@ public class Terrain {
 		JsonObject spawnJson = (JsonObject)parser.parse(terrain.getString("spawn"));
 		this.spawn = new Location(Bukkit.getWorld(spawnJson.get("world").getAsString()), spawnJson.get("x").getAsDouble(), spawnJson.get("y").getAsDouble(), spawnJson.get("z").getAsDouble(), spawnJson.get("yaw").getAsFloat(), spawnJson.get("pitch").getAsFloat());
 		this.sale = terrain.getInt("sale");
+		this.friends = friends;
 	}
 
 	public Integer getId() {
