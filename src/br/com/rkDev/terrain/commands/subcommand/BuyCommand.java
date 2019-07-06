@@ -48,7 +48,7 @@ public class BuyCommand {
 				return;
 			}
 			if(terrain.getSaleValue() > user.getMoney()) {
-				p.sendMessage(Lang.NO_CREDITS.build().replace("%valor%", terrain.getSaleValue() + ""));
+				p.sendMessage(Lang.NO_CREDITS.build().replace("%valor%", Utils.formatDouble(terrain.getSaleValue()) + ""));
 				return;
 			}
 			Query updateOwner = new Query("UPDATE `terrain` SET `user_id`='"+user.getId()+"', `sale`='0' WHERE `id`='"+terrain.getId()+"'");
@@ -58,7 +58,7 @@ public class BuyCommand {
 			terrain.getOwner().addMoney(terrain.getSaleValue());
 			user.removeMoney(terrain.getSaleValue());
 			
-			p.sendMessage(Lang.BROUGHT_TERRAIN.build().replace("%valor%", terrain.getSaleValue() + ""));
+			p.sendMessage(Lang.BROUGHT_TERRAIN.build().replace("%valor%", Utils.formatDouble(terrain.getSaleValue()) + ""));
 			MinecraftTerrain.getInstance().getTerrainManager().getCache().downloadTerrain(terrain.getId());
 			return;
 		}
@@ -68,7 +68,7 @@ public class BuyCommand {
 		}
 		double value = MinecraftTerrain.getInstance().getConfigManager().getPriceBlock() * Integer.parseInt(args[1]);
 		if(user.getMoney() < value) {
-			p.sendMessage(Lang.NO_CREDITS.build().replace("%valor%", value + ""));
+			p.sendMessage(Lang.NO_CREDITS.build().replace("%valor%", Utils.formatDouble(value) + ""));
 			return;
 		}
 		if(MinecraftTerrain.getInstance().getTerrainManager().getTerrain(p.getLocation()) != null) {
@@ -118,6 +118,6 @@ public class BuyCommand {
 			loc.getBlock().setType(Material.FENCE);
 		}
 		
-		p.sendMessage(Lang.BROUGHT_TERRAIN.build().replace("%valor%", value + ""));
+		p.sendMessage(Lang.BROUGHT_TERRAIN.build().replace("%valor%", Utils.formatDouble(value) + ""));
 	}
 }
