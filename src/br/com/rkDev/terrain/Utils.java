@@ -12,6 +12,14 @@ public class Utils {
 			return false;
 		}
 	}
+	public static boolean isDobule(String number) {
+		try {
+			Double.parseDouble(number);
+			return true;
+		}catch (NumberFormatException e) {
+			return false;
+		}
+	}
 	public static String formatDouble(double value) {
 		return new DecimalFormat("#,###.##").format(value);
 	}
