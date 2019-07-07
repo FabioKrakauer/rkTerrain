@@ -27,6 +27,7 @@ public enum Lang {
 	NOT_YOUR_TERRAIN(MinecraftTerrain.getInstance().getMessages().getConfig().getString("NaoESeuTerreno")),
 	IS_ON_SALE(MinecraftTerrain.getInstance().getMessages().getConfig().getString("TerrenoJaAVenda")),
 	TERRAIN_ANNOUCED(MinecraftTerrain.getInstance().getMessages().getConfig().getString("TerrenoAVenda")),
+	TELEPORTED_TERRAIN(MinecraftTerrain.getInstance().getMessages().getConfig().getString("TeleportadoComSucesso")),
 	;
 	
 //	TerrenoAVenda

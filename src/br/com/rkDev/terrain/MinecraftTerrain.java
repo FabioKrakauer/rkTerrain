@@ -158,6 +158,10 @@ public class MinecraftTerrain extends JavaPlugin{
 			getMessages().getConfig().set("TerrenoAVenda", "&aVocê anunciou seu terreno por %valor% com sucesso!");
 			getMessages().saveConfig();
 		}
+		if(getMessages().getConfig().getString("TeleportadoComSucesso") == null) {
+			getMessages().getConfig().set("TeleportadoComSucesso", "&aVocê foi teleportado para o seu terreno!");
+			getMessages().saveConfig();
+		}
 	}
 	
 	public void setConfig() {

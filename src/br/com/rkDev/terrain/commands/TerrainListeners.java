@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import br.com.rkDev.terrain.MinecraftTerrain;
+import br.com.rkDev.terrain.config.Lang;
 import br.com.rkDev.terrain.manage.Terrain;
 import br.com.rkDev.terrain.menu.PageableMenu;
 import br.com.rkDev.terrain.user.User;
@@ -36,6 +37,7 @@ public class TerrainListeners implements Listener{
 			}else if(e.getCurrentItem().getType().equals(Material.FENCE) || e.getCurrentItem().getType().equals(Material.DARK_OAK_FENCE)) {
 				Terrain t = MinecraftTerrain.getInstance().getTerrainManager().getTerrain(Integer.parseInt(e.getCurrentItem().getItemMeta().getLore().get(0).replace("§8", "")));
 				p.teleport(t.getSpawn());
+				p.sendMessage(Lang.TELEPORTED_TERRAIN.build());
 			}
 		}
 	}
