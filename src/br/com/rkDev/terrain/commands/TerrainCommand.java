@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import br.com.rkDev.terrain.MinecraftTerrain;
 import br.com.rkDev.terrain.commands.subcommand.AnnouceCommand;
 import br.com.rkDev.terrain.commands.subcommand.BuyCommand;
+import br.com.rkDev.terrain.commands.subcommand.GoCommand;
 import br.com.rkDev.terrain.config.Lang;
 import br.com.rkDev.terrain.user.User;
 
@@ -42,6 +43,8 @@ public class TerrainCommand implements CommandExecutor{
 				new BuyCommand(user, args);
 			}else if(command.equalsIgnoreCase("anunciar")) {
 				new AnnouceCommand(user, args);
+			}else if(command.equalsIgnoreCase("ir")) {
+				new GoCommand(user);
 			}else {
 				p.sendMessage(Lang.COMMAND_NOT_FOUND.build());
 			}
