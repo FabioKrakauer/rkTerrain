@@ -28,9 +28,10 @@ public enum Lang {
 	IS_ON_SALE(MinecraftTerrain.getInstance().getMessages().getConfig().getString("TerrenoJaAVenda")),
 	TERRAIN_ANNOUCED(MinecraftTerrain.getInstance().getMessages().getConfig().getString("TerrenoAVenda")),
 	TELEPORTED_TERRAIN(MinecraftTerrain.getInstance().getMessages().getConfig().getString("TeleportadoComSucesso")),
+	DESANNOUCE_TERRAIN(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Terreno_Desanunciado")),
 	;
 	
-//	TerrenoAVenda
+//	Terreno_Desanunciado
 	public String message;
 	Lang(String messag){
 		message = messag;

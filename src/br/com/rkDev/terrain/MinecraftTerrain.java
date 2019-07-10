@@ -162,6 +162,10 @@ public class MinecraftTerrain extends JavaPlugin{
 			getMessages().getConfig().set("TeleportadoComSucesso", "&aVocê foi teleportado para o seu terreno!");
 			getMessages().saveConfig();
 		}
+		if(getMessages().getConfig().getString("Terreno_Desanunciado") == null) {
+			getMessages().getConfig().set("Terreno_Desanunciado", "&aVocê desanunciou o terreno com sucesso!");
+			getMessages().saveConfig();
+		}
 	}
 	
 	public void setConfig() {
