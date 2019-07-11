@@ -10,6 +10,7 @@ import br.com.rkDev.terrain.commands.subcommand.AnnouceCommand;
 import br.com.rkDev.terrain.commands.subcommand.BuyCommand;
 import br.com.rkDev.terrain.commands.subcommand.DesannouceCommand;
 import br.com.rkDev.terrain.commands.subcommand.GoCommand;
+import br.com.rkDev.terrain.commands.subcommand.PanelCommand;
 import br.com.rkDev.terrain.config.Lang;
 import br.com.rkDev.terrain.user.User;
 
@@ -46,6 +47,8 @@ public class TerrainCommand implements CommandExecutor{
 				new AnnouceCommand(user, args);
 			}else if(command.equalsIgnoreCase("ir")) {
 				new GoCommand(user);
+			}else if(command.equalsIgnoreCase("painel")) {
+				new PanelCommand(user);
 			}else if(command.equalsIgnoreCase("desanunciar")) {
 				new DesannouceCommand(user);
 			}else {
