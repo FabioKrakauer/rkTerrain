@@ -63,8 +63,10 @@ public class User {
 	public ItemStack getSkull(String itemName) {
 		ItemStack stack = new ItemStack(Material.SKULL_ITEM);
 		SkullMeta meta = (SkullMeta) stack.getItemMeta();
+		stack.setDurability((short) 3);
 		meta.setOwner(getName());
 		meta.setDisplayName(itemName);
+		stack.setItemMeta(meta);
 		return stack;
 	}
 	public double getMoney() {
