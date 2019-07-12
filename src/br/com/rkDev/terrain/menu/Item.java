@@ -95,6 +95,24 @@ public class Item {
 		}
 		this.stack.setItemMeta(this.meta);
 	}
+	
+	@SuppressWarnings("deprecation")
+	public static Item getByItemStack(ItemStack itemstack) {
+		Item item = new Item();
+		item.setMaterial(itemstack.getType());
+		item.setAmount(itemstack.getAmount());
+		item.setData(itemstack.getData().getData());
+		item.setName(itemstack.getItemMeta().getDisplayName());
+		for(Entry<Enchantment, Integer> enchants : itemstack.getEnchantments().entrySet()) {
+			item.addEnchantment(enchants.getKey(), enchants.getValue());
+		}
+		if(itemstack.getItemMeta().hasLore()) {
+			for(String lore : itemstack.getItemMeta().getLore()) {
+				item.addLore(lore);
+			}
+		}
+		return item;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

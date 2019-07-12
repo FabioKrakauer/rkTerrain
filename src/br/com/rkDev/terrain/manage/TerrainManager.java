@@ -8,6 +8,7 @@ import org.bukkit.Location;
 
 import br.com.rkDev.terrain.commands.TerrainCommand;
 import br.com.rkDev.terrain.commands.TerrainListeners;
+import br.com.rkDev.terrain.commands.subcommand.panel.PanelListener;
 import br.com.rkDev.terrain.user.User;
 
 public class TerrainManager {
@@ -20,6 +21,7 @@ public class TerrainManager {
 		cache = new TerrainCache(this);
 		new TerrainCommand();
 		new TerrainListeners();
+		new PanelListener();
 	}
 	
 	public Terrain getTerrain(Integer id) {

@@ -33,12 +33,6 @@ public class PanelCommand {
 			return;
 		}
 		
-		Item members = new Item(Material.SKULL_ITEM);
-		members.setName("§aMembros");
-		members.addLore(" ");
-		members.addLore("§e- Adicionar membros ao terreno!");
-		members.constructItem();
-		
 		Item config = new Item(Material.REDSTONE_COMPARATOR);
 		config.setName("§aConfigurações");
 		config.addLore(" ");
@@ -63,7 +57,7 @@ public class PanelCommand {
 		
 		Inventory inv = Bukkit.createInventory(p, 9*3, "Painel do terreno");
 		
-		inv.setItem(10, members.getItemStack());
+		inv.setItem(10, user.getSkull("§aMembros"));
 		inv.setItem(12, config.getItemStack());
 		inv.setItem(14, sale.getItemStack());
 		inv.setItem(16, spawn.getItemStack());
