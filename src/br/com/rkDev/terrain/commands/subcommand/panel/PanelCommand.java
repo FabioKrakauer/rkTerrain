@@ -1,4 +1,4 @@
-package br.com.rkDev.terrain.commands.subcommand;
+package br.com.rkDev.terrain.commands.subcommand.panel;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

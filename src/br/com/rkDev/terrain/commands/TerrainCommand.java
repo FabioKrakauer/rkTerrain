@@ -10,7 +10,7 @@ import br.com.rkDev.terrain.commands.subcommand.AnnouceCommand;
 import br.com.rkDev.terrain.commands.subcommand.BuyCommand;
 import br.com.rkDev.terrain.commands.subcommand.DesannouceCommand;
 import br.com.rkDev.terrain.commands.subcommand.GoCommand;
-import br.com.rkDev.terrain.commands.subcommand.PanelCommand;
+import br.com.rkDev.terrain.commands.subcommand.panel.PanelCommand;
 import br.com.rkDev.terrain.config.Lang;
 import br.com.rkDev.terrain.user.User;
 
