@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 
 import br.com.rkDev.terrain.MinecraftTerrain;
@@ -57,6 +60,13 @@ public class User {
 		return MinecraftTerrain.getInstance().getConfigManager().getDefaultPlayerTerrainQuantity();
 	}
 	
+	public ItemStack getSkull(String itemName) {
+		ItemStack stack = new ItemStack(Material.SKULL_ITEM);
+		SkullMeta meta = (SkullMeta) stack.getItemMeta();
+		meta.setOwner(getName());
+		meta.setDisplayName(itemName);
+		return stack;
+	}
 	public double getMoney() {
 		return MinecraftTerrain.getInstance().getEconomy().getBalance(Bukkit.getOfflinePlayer(getUUID()));
 	}
