@@ -1,7 +1,6 @@
 package br.com.rkDev.terrain.commands.subcommand.panel;
 
 import java.util.ArrayList;
-import java.util.Map.Entry;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -13,17 +12,21 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import br.com.rkDev.terrain.MinecraftTerrain;
+import br.com.rkDev.terrain.config.Lang;
+import br.com.rkDev.terrain.database.Query;
 import br.com.rkDev.terrain.manage.Terrain;
-import br.com.rkDev.terrain.menu.Item;
+import br.com.rkDev.terrain.menu.AnvilGUI;
+import br.com.rkDev.terrain.menu.AnvilGUI.AnvilClickEvent;
+import br.com.rkDev.terrain.menu.AnvilGUI.AnvilSlot;
 import br.com.rkDev.terrain.menu.PageableMenu;
 import br.com.rkDev.terrain.user.User;
 
 public class PanelListener implements Listener{
-	
+
 	public PanelListener() {
 		Bukkit.getPluginManager().registerEvents(this, MinecraftTerrain.getInstance());
 	}
-	
+
 	@EventHandler
 	public void selectOptionMainMenu(InventoryClickEvent e) {
 		if(e.getInventory().getName().equalsIgnoreCase("Painel do terreno")) {
@@ -44,7 +47,7 @@ public class PanelListener implements Listener{
 			}
 		}
 	}
-	
+
 	public void openMembersMenu(User user) {
 		Player p = Bukkit.getPlayer(user.getName());
 		Terrain terrain = MinecraftTerrain.getInstance().getTerrainManager().getTerrain(p.getLocation());
@@ -66,5 +69,63 @@ public class PanelListener implements Listener{
 		pm.setType("Adicionar membro");
 		pm.openInventoryOnPage(1);
 		MinecraftTerrain.getInstance().getPageableMenuManager().setPageableMenuUser(user, pm);
+	}
+
+	@EventHandler
+	public void membersPanelController(InventoryClickEvent e) {
+		if(e.getInventory().getName().contains("Membros Terreno - Pag(")) {
+			e.setCancelled(true);
+			Player p = (Player)e.getWhoClicked();
+			User user = MinecraftTerrain.getInstance().getUserManager().getUser(e.getWhoClicked().getUniqueId());
+			if(e.getCurrentItem().getType().equals(Material.ARROW)) {
+				PageableMenu pm = MinecraftTerrain.getInstance().getPageableMenuManager().getPageableMenuUser(user);
+				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aAvancar ->")) {
+					pm.nextPage();
+					return;
+				}else {
+					pm.backPage();
+					return;
+				}
+			}
+			if(e.getCurrentItem().getType().equals(Material.SKULL_ITEM)) {
+				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§eAdicionar Membro")) {
+					float exp = p.getExp();
+					AnvilGUI gui = new AnvilGUI((Player) e.getWhoClicked(), new AnvilGUI.AnvilClickEventHandler() {
+
+						@Override
+						public void onAnvilClick(AnvilClickEvent event) {
+							p.setExp(exp);
+							User friend = MinecraftTerrain.getInstance().getUserManager().getUser(event.getName());
+							if(friend == null) {
+								p.sendMessage(Lang.USER_NOT_FOUND.build().replace("%jogador%", event.getName()));
+								return;
+							}
+							Terrain terrain = MinecraftTerrain.getInstance().getTerrainManager().getTerrain(p.getLocation());
+							if(terrain == null) {
+								p.sendMessage(Lang.NULL_TERRAIN.build());
+								return;
+							}
+							if(user.getId() != terrain.getOwner().getId()) {
+								p.sendMessage(Lang.NOT_YOUR_TERRAIN.build());
+								return;
+							}
+							if(terrain.getFriends().contains(friend) || user.getId() == friend.getId()) {
+								p.sendMessage(Lang.USER_ALREADY_ADD.build());
+								return;
+							}
+							Query query = new Query("INSERT INTO `user_terrain` (`id`, `user_id`, `terrain_id`) VALUES (NULL, '"+friend.getId()+"', '"+terrain.getId()+"')");
+							query.execute();
+							MinecraftTerrain.getInstance().getTerrainManager().getCache().downloadTerrain(terrain.getId());
+							p.sendMessage(Lang.USER_ADD.build());
+						}
+						
+					});
+					gui.setSlot(AnvilSlot.INPUT_LEFT, user.getSkull("Digite o nome"));
+					gui.open();
+				}else {
+					
+				}
+			}
+		}
 	}
 }

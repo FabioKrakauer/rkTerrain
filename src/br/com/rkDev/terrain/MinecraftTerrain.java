@@ -166,6 +166,18 @@ public class MinecraftTerrain extends JavaPlugin{
 			getMessages().getConfig().set("Terreno_Desanunciado", "&aVocê desanunciou o terreno com sucesso!");
 			getMessages().saveConfig();
 		}
+		if(getMessages().getConfig().getString("UsuarioNaoEncontrado") == null) {
+			getMessages().getConfig().set("UsuarioNaoEncontrado", "&eO jogador %jogador% nunca entrou no servidor!");
+			getMessages().saveConfig();
+		}
+		if(getMessages().getConfig().getString("UsuarioJaAdicionado") == null) {
+			getMessages().getConfig().set("UsuarioJaAdicionado", "&eEste jogador já é um membro deste terreno!");
+			getMessages().saveConfig();
+		}
+		if(getMessages().getConfig().getString("Usuario_Adicionado") == null) {
+			getMessages().getConfig().set("Usuario_Adicionado", "&aUsuario adicionado ao seu terreno com sucesso!");
+			getMessages().saveConfig();
+		}
 	}
 	
 	public void setConfig() {
