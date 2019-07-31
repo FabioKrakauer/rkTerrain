@@ -21,6 +21,7 @@ public class DatabaseManager {
 		addCommandSetup("CREATE TABLE IF NOT EXISTS `user` ( `id` INT(15) NULL AUTO_INCREMENT , `name` VARCHAR(16) NOT NULL , `uuid` VARCHAR(40) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
 		addCommandSetup("CREATE TABLE IF NOT EXISTS `terrain` ( `id` INT(30) NULL AUTO_INCREMENT , `user_id` INT(15) NOT NULL , `cuboid` VARCHAR(255) NOT NULL , `spawn` VARCHAR(255) NOT NULL , `sale` DOUBLE(40,2) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;");
 		addCommandSetup("CREATE TABLE IF NOT EXISTS `user_terrain` ( `id` INT(30) NULL AUTO_INCREMENT , `user_id` INT(30) NOT NULL , `terrain_id` INT(30) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+		addCommandSetup("CREATE TABLE IF NOT EXISTS `terrain_flags` ( `id` INT(10) NULL AUTO_INCREMENT , `terrain_id` INT(30) NOT NULL , `join` TINYINT(1) NOT NULL , `pvp` TINYINT(1) NOT NULL , `construct` TINYINT(1) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
 	}
 	public Database getDatabase() {
 		return this.database;

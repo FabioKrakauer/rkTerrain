@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
@@ -18,6 +19,7 @@ import br.com.rkDev.terrain.manage.Terrain;
 import br.com.rkDev.terrain.menu.AnvilGUI;
 import br.com.rkDev.terrain.menu.AnvilGUI.AnvilClickEvent;
 import br.com.rkDev.terrain.menu.AnvilGUI.AnvilSlot;
+import br.com.rkDev.terrain.menu.Item;
 import br.com.rkDev.terrain.menu.PageableMenu;
 import br.com.rkDev.terrain.user.User;
 
@@ -37,6 +39,7 @@ public class PanelListener implements Listener{
 				return;
 			}
 			if(e.getCurrentItem().getType().equals(Material.REDSTONE_COMPARATOR)) {
+				openConfigMenu(user);
 				return;
 			}
 			if(e.getCurrentItem().getType().equals(Material.ITEM_FRAME)) {
@@ -70,7 +73,33 @@ public class PanelListener implements Listener{
 		pm.openInventoryOnPage(1);
 		MinecraftTerrain.getInstance().getPageableMenuManager().setPageableMenuUser(user, pm);
 	}
-
+	
+	public void openConfigMenu(User user) {
+		Player p = Bukkit.getPlayer(user.getName());
+		Inventory inv = Bukkit.createInventory(p, 9*5, "Configurações do terreno");
+		
+		Item door = new Item(Material.IRON_DOOR, "§bEntrada");
+		door.addLore(" ");
+		door.addLore("§aPermite ou bloqueia a entrada no seu terreno!");
+		door.constructItem();
+		
+		Item sword = new Item(Material.DIAMOND_SWORD, "§bPvP");
+		sword.addLore(" ");
+		sword.addLore("§aPermite ou bloqueia o PvP no terreno!");
+		sword.constructItem();
+		
+		Item anvil = new Item(Material.ANVIL, "§bConstruções");
+		anvil.addLore(" ");
+		anvil.addLore("§aPermite ou bloqueia o construção no terreno!");
+		anvil.constructItem();
+		
+		inv.setItem(11, sword.getItemStack());
+		inv.setItem(13, door.getItemStack());
+		inv.setItem(15, anvil.getItemStack());
+		
+		p.closeInventory();
+		p.openInventory(inv);
+	}
 	@EventHandler
 	public void membersPanelController(InventoryClickEvent e) {
 		if(e.getInventory().getName().contains("Membros Terreno - Pag(")) {
