@@ -113,6 +113,8 @@ public class BuyCommand {
 		Query insertTerrain = new Query("INSERT INTO `terrain` (`id`, `user_id`, `cuboid`, `spawn`, `sale`) VALUES (NULL, '"+user.getId()+"', '"+json+"', '"+spawn+"', '0')");
 		int terrainId = insertTerrain.insertGetID("id");
 		
+		Query insertFlags = new Query("INSERT INTO `terrain_flags` (`id`, `terrain_id`, `join`, `pvp`, `construct`) VALUES (NULL, '"+terrainId+"', '0', '0', '0')");
+		insertFlags.execute();
 		MinecraftTerrain.getInstance().getTerrainManager().getCache().downloadTerrain(terrainId);
 		for(Location loc : cuboid.getWalls((int)p.getLocation().getY())) {
 			loc.getBlock().setType(Material.FENCE);
