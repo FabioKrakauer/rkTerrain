@@ -175,7 +175,11 @@ public class MinecraftTerrain extends JavaPlugin{
 			getMessages().saveConfig();
 		}
 		if(getMessages().getConfig().getString("Usuario_Adicionado") == null) {
-			getMessages().getConfig().set("Usuario_Adicionado", "&aUsuario adicionado ao seu terreno com sucesso!");
+			getMessages().getConfig().set("Usuario_Adicionado", "&aVocê adicionou o jogador %jogador% ao seu terreno com sucesso!");
+			getMessages().saveConfig();
+		}
+		if(getMessages().getConfig().getString("Usuario_Removido") == null) {
+			getMessages().getConfig().set("Usuario_Removido", "&aVocê removeu o jogador %jogador% do seu terreno com sucesso!");
 			getMessages().saveConfig();
 		}
 	}

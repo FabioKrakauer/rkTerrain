@@ -33,9 +33,10 @@ public enum Lang {
 	USER_NOT_FOUND(MinecraftTerrain.getInstance().getMessages().getConfig().getString("UsuarioNaoEncontrado")),
 	USER_ALREADY_ADD(MinecraftTerrain.getInstance().getMessages().getConfig().getString("UsuarioJaAdicionado")),
 	USER_ADD(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Usuario_Adicionado")),
+	USER_REMOVED(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Usuario_Removido")),
 	;
 	
-//	Usuario_Adicionado
+//	Usuario_Removido
 	public String message;
 	Lang(String messag){
 		message = messag;

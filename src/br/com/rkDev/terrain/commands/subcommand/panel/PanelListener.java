@@ -88,6 +88,7 @@ public class PanelListener implements Listener{
 				}
 			}
 			if(e.getCurrentItem().getType().equals(Material.SKULL_ITEM)) {
+				Terrain terrain = MinecraftTerrain.getInstance().getTerrainManager().getTerrain(p.getLocation());
 				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§eAdicionar Membro")) {
 					float exp = p.getExp();
 					AnvilGUI gui = new AnvilGUI((Player) e.getWhoClicked(), new AnvilGUI.AnvilClickEventHandler() {
@@ -100,7 +101,6 @@ public class PanelListener implements Listener{
 								p.sendMessage(Lang.USER_NOT_FOUND.build().replace("%jogador%", event.getName()));
 								return;
 							}
-							Terrain terrain = MinecraftTerrain.getInstance().getTerrainManager().getTerrain(p.getLocation());
 							if(terrain == null) {
 								p.sendMessage(Lang.NULL_TERRAIN.build());
 								return;
@@ -116,14 +116,29 @@ public class PanelListener implements Listener{
 							Query query = new Query("INSERT INTO `user_terrain` (`id`, `user_id`, `terrain_id`) VALUES (NULL, '"+friend.getId()+"', '"+terrain.getId()+"')");
 							query.execute();
 							MinecraftTerrain.getInstance().getTerrainManager().getCache().downloadTerrain(terrain.getId());
-							p.sendMessage(Lang.USER_ADD.build());
+							p.sendMessage(Lang.USER_ADD.build().replace("%jogador%", friend.getName()));
 						}
 						
 					});
 					gui.setSlot(AnvilSlot.INPUT_LEFT, user.getSkull("Digite o nome"));
 					gui.open();
 				}else {
-					
+					String name = e.getCurrentItem().getItemMeta().getDisplayName().split("§a")[1];
+					User friendToRemove = MinecraftTerrain.getInstance().getUserManager().getUser(name);
+					if(friendToRemove == null) {
+						p.sendMessage(Lang.USER_NOT_FOUND.build());
+						return;
+					}
+					if(terrain == null) {
+						p.sendMessage(Lang.NULL_TERRAIN.build());
+						return;
+					}
+					Query removeUser = new Query("DELETE FROM `user_terrain` WHERE `user_id`='"+friendToRemove.getId()+"' AND `terrain_id`='"+terrain.getId()+"'");
+					removeUser.execute();
+					MinecraftTerrain.getInstance().getTerrainManager().getCache().downloadTerrain(terrain.getId());
+					p.sendMessage(Lang.USER_REMOVED.build().replace("%jogador%", friendToRemove.getName()));
+					p.closeInventory();
+					p.chat("/terreno painel");
 				}
 			}
 		}
