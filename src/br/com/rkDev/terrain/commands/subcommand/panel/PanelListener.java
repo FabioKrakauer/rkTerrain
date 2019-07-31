@@ -138,7 +138,6 @@ public class PanelListener implements Listener{
 					MinecraftTerrain.getInstance().getTerrainManager().getCache().downloadTerrain(terrain.getId());
 					p.sendMessage(Lang.USER_REMOVED.build().replace("%jogador%", friendToRemove.getName()));
 					p.closeInventory();
-					p.chat("/terreno painel");
 				}
 			}
 		}
