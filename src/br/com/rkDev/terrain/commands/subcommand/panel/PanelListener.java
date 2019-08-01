@@ -106,6 +106,9 @@ public class PanelListener implements Listener{
 			e.setCancelled(true);
 			Player p = (Player)e.getWhoClicked();
 			User user = MinecraftTerrain.getInstance().getUserManager().getUser(e.getWhoClicked().getUniqueId());
+			if(e.getCurrentItem() == null) {
+				return;
+			}
 			if(e.getCurrentItem().getType().equals(Material.ARROW)) {
 				PageableMenu pm = MinecraftTerrain.getInstance().getPageableMenuManager().getPageableMenuUser(user);
 				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aAvancar ->")) {
