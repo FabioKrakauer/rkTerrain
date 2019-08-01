@@ -23,7 +23,11 @@ public class Terrain {
 	
 	private HashSet<User> friends;
 	
-	public Terrain(ResultSet terrain, HashSet<User> friends) throws SQLException {
+	private boolean canJoin;
+	private boolean canBuild;
+	private boolean canPvP;
+	
+	public Terrain(ResultSet terrain, HashSet<User> friends, boolean[] flags) throws SQLException {
 		this.id = terrain.getInt("id");
 		this.owner = MinecraftTerrain.getInstance().getUserManager().getUser(terrain.getInt("user_id"));
 		JsonParser parser = new JsonParser();
@@ -33,6 +37,9 @@ public class Terrain {
 		this.spawn = new Location(Bukkit.getWorld(spawnJson.get("world").getAsString()), spawnJson.get("x").getAsDouble(), spawnJson.get("y").getAsDouble(), spawnJson.get("z").getAsDouble(), spawnJson.get("yaw").getAsFloat(), spawnJson.get("pitch").getAsFloat());
 		this.sale = terrain.getInt("sale");
 		this.friends = friends;
+		canJoin = flags[0];
+		canPvP = flags[1];
+		canBuild = flags[2];
 	}
 
 	public Integer getId() {
@@ -62,7 +69,20 @@ public class Terrain {
 	public double getSaleValue() {
 		return sale;
 	}
-
+	
+	public boolean[] getFlags() {
+		boolean[] flags = {canJoin, canPvP, canBuild};
+		return flags;
+	}
+	public boolean canJoin() {
+		return canJoin;
+	}
+	public boolean canPvP() {
+		return canPvP;
+	}
+	public boolean canBuid() {
+		return canBuild;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
