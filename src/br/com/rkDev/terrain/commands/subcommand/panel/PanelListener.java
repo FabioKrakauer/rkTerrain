@@ -77,6 +77,12 @@ public class PanelListener implements Listener{
 	public void openConfigMenu(User user) {
 		Player p = Bukkit.getPlayer(user.getName());
 		Inventory inv = Bukkit.createInventory(p, 9*5, "Configurações do terreno");
+		Terrain terrain = MinecraftTerrain.getInstance().getTerrainManager().getTerrain(p.getLocation());
+		
+		if(terrain == null) {
+			p.sendMessage(Lang.NULL_TERRAIN.build());
+			return;
+		}
 		
 		Item door = new Item(Material.IRON_DOOR, "§bEntrada");
 		door.addLore(" ");
@@ -93,9 +99,36 @@ public class PanelListener implements Listener{
 		anvil.addLore("§aPermite ou bloqueia o construção no terreno!");
 		anvil.constructItem();
 		
+		Item doorOption = new Item(Material.WOOL);
+		doorOption.setData((short) 14);
+		doorOption.setName("§bClique para ativar!");
+		if(terrain.canJoin()) {
+			doorOption.setData((short) 5);
+			doorOption.setName("§bClique para desativar!");
+		}
+		Item pvpOption = new Item(Material.WOOL);
+		pvpOption.setData((short) 14);
+		pvpOption.setName("§bClique para ativar!");
+		if(terrain.canPvP()) {
+			pvpOption.setData((short) 5);
+			pvpOption.setName("§bClique para desativar!");
+		}
+		
+		Item buildOption = new Item(Material.WOOL);
+		buildOption.setData((short) 14);
+		buildOption.setName("§bClique para ativar!");
+		if(terrain.canBuid()) {
+			buildOption.setData((short) 5);
+			buildOption.setName("§bClique para desativar!");
+		}
+		
 		inv.setItem(11, sword.getItemStack());
 		inv.setItem(13, door.getItemStack());
 		inv.setItem(15, anvil.getItemStack());
+		
+		inv.setItem(29, pvpOption.getItemStack());
+		inv.setItem(31, doorOption.getItemStack());
+		inv.setItem(33, buildOption.getItemStack());
 		
 		p.closeInventory();
 		p.openInventory(inv);
