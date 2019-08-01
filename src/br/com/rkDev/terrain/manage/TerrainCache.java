@@ -28,7 +28,15 @@ public class TerrainCache {
 				while(friendsSet.next()) {
 					friends.add(MinecraftTerrain.getInstance().getUserManager().getUser(friendsSet.getInt("user_id")));
 				}
-				Terrain terrainMap = new Terrain(terrain, friends);
+				Query getFlags = new Query("SELECT * FROM `terrain_flags` WHERE `terrain_id`='"+terrain.getInt("id")+"'");
+				ResultSet flagsSet = getFlags.getResultSet();
+				boolean[] flags = {false, false, false};
+				if(flagsSet.next()) {
+					flags[0] = flagsSet.getInt("join") == 0 ? false : true;
+					flags[1] = flagsSet.getInt("pvp") == 0 ? false : true;
+					flags[2] = flagsSet.getInt("construct") == 0 ? false : true;
+				}
+				Terrain terrainMap = new Terrain(terrain, friends, flags);
 				this.manager.addTerrain(terrainMap);
 			}
 		}catch (SQLException e) {
@@ -46,7 +54,15 @@ public class TerrainCache {
 				while(friendsSet.next()) {
 					friends.add(MinecraftTerrain.getInstance().getUserManager().getUser(friendsSet.getInt("user_id")));
 				}
-				Terrain terrainMap = new Terrain(terrain, friends);
+				Query getFlags = new Query("SELECT * FROM `terrain_flags` WHERE `terrain_id`='"+terrain.getInt("id")+"'");
+				ResultSet flagsSet = getFlags.getResultSet();
+				boolean[] flags = {false, false, false};
+				if(flagsSet.next()) {
+					flags[0] = flagsSet.getInt("join") == 0 ? false : true;
+					flags[1] = flagsSet.getInt("pvp") == 0 ? false : true;
+					flags[2] = flagsSet.getInt("construct") == 0 ? false : true;
+				}
+				Terrain terrainMap = new Terrain(terrain, friends, flags);
 				this.manager.addTerrain(terrainMap);
 			}
 		}catch (SQLException e) {
