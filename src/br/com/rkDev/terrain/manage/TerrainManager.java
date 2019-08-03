@@ -9,6 +9,7 @@ import org.bukkit.Location;
 import br.com.rkDev.terrain.commands.TerrainCommand;
 import br.com.rkDev.terrain.commands.TerrainListeners;
 import br.com.rkDev.terrain.commands.subcommand.panel.PanelListener;
+import br.com.rkDev.terrain.events.CallCustomEvents;
 import br.com.rkDev.terrain.user.User;
 
 public class TerrainManager {
@@ -22,6 +23,7 @@ public class TerrainManager {
 		new TerrainCommand();
 		new TerrainListeners();
 		new PanelListener();
+		new CallCustomEvents();
 	}
 	
 	public Terrain getTerrain(Integer id) {
