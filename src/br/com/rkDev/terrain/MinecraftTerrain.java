@@ -182,6 +182,10 @@ public class MinecraftTerrain extends JavaPlugin{
 			getMessages().getConfig().set("Usuario_Removido", "&aVocê removeu o jogador %jogador% do seu terreno com sucesso!");
 			getMessages().saveConfig();
 		}
+		if(getMessages().getConfig().getString("Spawn_Alterado") == null) {
+			getMessages().getConfig().set("Spawn_Alterado", "&aVocê alterou o spawn do seu terreno com sucesso!");
+			getMessages().saveConfig();
+		}
 	}
 	
 	public void setConfig() {

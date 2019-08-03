@@ -29,6 +29,7 @@ public enum Lang {
 	TERRAIN_ANNOUCED(MinecraftTerrain.getInstance().getMessages().getConfig().getString("TerrenoAVenda")),
 	TELEPORTED_TERRAIN(MinecraftTerrain.getInstance().getMessages().getConfig().getString("TeleportadoComSucesso")),
 	DESANNOUCE_TERRAIN(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Terreno_Desanunciado")),
+	TERRAIN_SPAWN_ALTERNED(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Spawn_Alterado")),
 	
 	USER_NOT_FOUND(MinecraftTerrain.getInstance().getMessages().getConfig().getString("UsuarioNaoEncontrado")),
 	USER_ALREADY_ADD(MinecraftTerrain.getInstance().getMessages().getConfig().getString("UsuarioJaAdicionado")),
@@ -36,7 +37,7 @@ public enum Lang {
 	USER_REMOVED(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Usuario_Removido")),
 	;
 	
-//	Usuario_Removido
+//	Spawn_Alterado
 	public String message;
 	Lang(String messag){
 		message = messag;

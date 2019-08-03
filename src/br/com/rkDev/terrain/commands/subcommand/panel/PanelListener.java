@@ -3,6 +3,7 @@ package br.com.rkDev.terrain.commands.subcommand.panel;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,6 +12,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
+
+import com.google.gson.JsonObject;
 
 import br.com.rkDev.terrain.MinecraftTerrain;
 import br.com.rkDev.terrain.config.Lang;
@@ -33,7 +36,19 @@ public class PanelListener implements Listener{
 	public void selectOptionMainMenu(InventoryClickEvent e) {
 		if(e.getInventory().getName().equalsIgnoreCase("Painel do terreno")) {
 			e.setCancelled(true);
+			if(e.getCurrentItem() == null) {
+				return;
+			}
 			User user = MinecraftTerrain.getInstance().getUserManager().getUser(e.getWhoClicked().getUniqueId());
+			Terrain terrain = MinecraftTerrain.getInstance().getTerrainManager().getTerrain(e.getWhoClicked().getLocation());
+			if(terrain == null) {
+				e.getWhoClicked().sendMessage(Lang.NULL_TERRAIN.build());
+				return;
+			}
+			if(terrain.getOwner().getId() != user.getId()) {
+				e.getWhoClicked().sendMessage(Lang.NOT_YOUR_TERRAIN.build());
+				return;
+			}
 			if(e.getCurrentItem().getType().equals(Material.SKULL_ITEM)) {
 				openMembersMenu(user);
 				return;
@@ -46,6 +61,18 @@ public class PanelListener implements Listener{
 				return;
 			}
 			if(e.getCurrentItem().getType().equals(Material.EYE_OF_ENDER)) {
+				Location loc = e.getWhoClicked().getLocation();
+				JsonObject json = new JsonObject();
+				json.addProperty("x", loc.getX());
+				json.addProperty("y", loc.getY());
+				json.addProperty("z", loc.getZ());
+				json.addProperty("yaw", loc.getYaw());
+				json.addProperty("pitch", loc.getPitch());
+				json.addProperty("world", loc.getWorld().getName());
+				Query update = new Query("UPDATE `terrain` SET `spawn`='"+json.toString()+"' WHERE `id`='"+terrain.getId()+"'");
+				update.execute();
+				MinecraftTerrain.getInstance().getTerrainManager().getCache().downloadTerrain(terrain.getId());
+				e.getWhoClicked().sendMessage(Lang.TERRAIN_SPAWN_ALTERNED.build());
 				return;
 			}
 		}
@@ -101,25 +128,25 @@ public class PanelListener implements Listener{
 		
 		Item doorOption = new Item(Material.WOOL);
 		doorOption.setData((short) 14);
-		doorOption.setName("§bClique para ativar!");
+		doorOption.setName("§bClique para ativar a entrada!");
 		if(terrain.canJoin()) {
 			doorOption.setData((short) 5);
-			doorOption.setName("§bClique para desativar!");
+			doorOption.setName("§bClique para desativar a entrada!");
 		}
 		Item pvpOption = new Item(Material.WOOL);
 		pvpOption.setData((short) 14);
-		pvpOption.setName("§bClique para ativar!");
+		pvpOption.setName("§bClique para ativar o pvp!");
 		if(terrain.canPvP()) {
 			pvpOption.setData((short) 5);
-			pvpOption.setName("§bClique para desativar!");
+			pvpOption.setName("§bClique para desativar o pvp!");
 		}
 		
 		Item buildOption = new Item(Material.WOOL);
 		buildOption.setData((short) 14);
-		buildOption.setName("§bClique para ativar!");
+		buildOption.setName("§bClique para ativar a construção!");
 		if(terrain.canBuid()) {
 			buildOption.setData((short) 5);
-			buildOption.setName("§bClique para desativar!");
+			buildOption.setName("§bClique para desativar a construção!");
 		}
 		
 		inv.setItem(11, sword.getItemStack());
@@ -198,12 +225,66 @@ public class PanelListener implements Listener{
 						p.sendMessage(Lang.NULL_TERRAIN.build());
 						return;
 					}
+					if(terrain.getOwner().getId() != user.getId()) {
+						p.sendMessage(Lang.NOT_YOUR_TERRAIN.build());
+						return;
+					}
 					Query removeUser = new Query("DELETE FROM `user_terrain` WHERE `user_id`='"+friendToRemove.getId()+"' AND `terrain_id`='"+terrain.getId()+"'");
 					removeUser.execute();
 					MinecraftTerrain.getInstance().getTerrainManager().getCache().downloadTerrain(terrain.getId());
 					p.sendMessage(Lang.USER_REMOVED.build().replace("%jogador%", friendToRemove.getName()));
 					p.closeInventory();
 				}
+			}
+		}
+	}
+	@EventHandler
+	public void onChangeFlag(InventoryClickEvent e) {
+		if(e.getInventory().getName().equalsIgnoreCase("Configurações do terreno")) {
+			e.setCancelled(true);
+			Player p = (Player)e.getWhoClicked();
+			User user = MinecraftTerrain.getInstance().getUserManager().getUser(e.getWhoClicked().getUniqueId());
+			Terrain terrain = MinecraftTerrain.getInstance().getTerrainManager().getTerrain(e.getWhoClicked().getLocation());
+			if(terrain == null) {
+				p.sendMessage(Lang.NULL_TERRAIN.build());
+				return;
+			}
+			if(terrain.getOwner().getId() != user.getId()) {
+				p.sendMessage(Lang.NOT_YOUR_TERRAIN.build());
+				return;
+			}
+			if(e.getCurrentItem() == null) {
+				return;
+			}
+			if(e.getCurrentItem().getType().equals(Material.WOOL)) {
+				switch (e.getCurrentItem().getItemMeta().getDisplayName()) {
+					case "§bClique para ativar a entrada!":
+						Query setJoinOn = new Query("UPDATE `terrain_flags` SET `join`='1' WHERE `terrain_id`='"+terrain.getId()+"'");
+						setJoinOn.execute();
+						break;
+					case "§bClique para desativar a entrada!":
+						Query setJoinOff = new Query("UPDATE `terrain_flags` SET `join`='0' WHERE `terrain_id`='"+terrain.getId()+"'");
+						setJoinOff.execute();
+						break;
+					case "§bClique para ativar o pvp!":
+						Query setPvPOn = new Query("UPDATE `terrain_flags` SET `pvp`='1' WHERE `terrain_id`='"+terrain.getId()+"'");
+						setPvPOn.execute();
+						break;
+					case "§bClique para desativar o pvp!":
+						Query setPvPOff = new Query("UPDATE `terrain_flags` SET `pvp`='0' WHERE `terrain_id`='"+terrain.getId()+"'");
+						setPvPOff.execute();
+						break;
+					case "§bClique para ativar a construção!":
+						Query setBuildOn = new Query("UPDATE `terrain_flags` SET `construct`='1' WHERE `terrain_id`='"+terrain.getId()+"'");
+						setBuildOn.execute();
+						break;
+					case "§bClique para desativar a construção!":
+						Query setBuildOff = new Query("UPDATE `terrain_flags` SET `construct`='0' WHERE `terrain_id`='"+terrain.getId()+"'");
+						setBuildOff.execute();
+						break;
+				}
+				MinecraftTerrain.getInstance().getTerrainManager().getCache().downloadTerrain(terrain.getId());
+				openConfigMenu(user);
 			}
 		}
 	}
