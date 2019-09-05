@@ -24,5 +24,5 @@ With the terrain max size, only even numbers
 With the terrain min size, only even numbers  
 With the admin permission to allow the player active bypass
 With the price per block  
-With max terrains per players  
+With max terrains per players   
 
