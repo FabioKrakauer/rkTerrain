@@ -27,7 +27,7 @@ public class MinecraftTerrain extends JavaPlugin{
 	
 	public void onEnable() {
 		INSTACE = this;
-		
+		Bukkit.getConsoleSender().sendMessage("TESTE");
 		if(!setupEconomy()) {
 			Bukkit.getConsoleSender().sendMessage("§c==========================================");
 			System.out.println(" ");
@@ -184,6 +184,14 @@ public class MinecraftTerrain extends JavaPlugin{
 		}
 		if(getMessages().getConfig().getString("Spawn_Alterado") == null) {
 			getMessages().getConfig().set("Spawn_Alterado", "&aVocê alterou o spawn do seu terreno com sucesso!");
+			getMessages().saveConfig();
+		}
+		if(getMessages().getConfig().getString("Bypass_Ativado") == null) {
+			getMessages().getConfig().set("Bypass_Ativado", "&eVoce ativou o bypass com sucesso");
+			getMessages().saveConfig();
+		}
+		if(getMessages().getConfig().getString("Bypass_Desativado") == null) {
+			getMessages().getConfig().set("Bypass_Desativado", "&eVoce desativou o bypass com sucesso");
 			getMessages().saveConfig();
 		}
 	}

@@ -9,6 +9,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 import br.com.rkDev.terrain.MinecraftTerrain;
 import br.com.rkDev.terrain.config.Lang;
+import br.com.rkDev.terrain.events.UserBuildInTerrainEvent;
+import br.com.rkDev.terrain.events.UserHitInTerrainEvent;
+import br.com.rkDev.terrain.events.UserJoinInTerrainEvent;
 import br.com.rkDev.terrain.manage.Terrain;
 import br.com.rkDev.terrain.menu.PageableMenu;
 import br.com.rkDev.terrain.user.User;
@@ -41,5 +44,37 @@ public class TerrainListeners implements Listener{
 			}
 		}
 	}
-
+	@EventHandler()
+	public void userJoinInTerrain(UserJoinInTerrainEvent e) {
+		Terrain terrain = e.getTerrain();
+		User user = e.getUser();
+		if(!terrain.getFlags()[0]) {
+			if(terrain.getOwner().getId() != user.getId() && (!terrain.getFriends().contains(user))) {
+				if(MinecraftTerrain.getInstance().getUserManager().isWithBypass(user)) {
+					return;
+				}
+				e.setCancelled(true);
+			}
+		}
+	}
+	@EventHandler()
+	public void usePvPInTerrain(UserHitInTerrainEvent e) {
+		Terrain terrain = e.getTerrain();
+		if(!terrain.getFlags()[1]) {
+			e.setCancelled(true);
+		}
+	}
+	@EventHandler()
+	public void userBuildInTerrain(UserBuildInTerrainEvent e) {
+		Terrain terrain = e.getTerrain();
+		User user = e.getUser();
+		if(!terrain.getFlags()[2]) {
+			if(terrain.getOwner().getId() != user.getId() && (!terrain.getFriends().contains(user))) {
+				if(MinecraftTerrain.getInstance().getUserManager().isWithBypass(user)) {
+					return;
+				}
+				e.setCancelled(true);
+			}
+		}
+	}
 }

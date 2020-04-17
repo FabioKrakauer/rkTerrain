@@ -1,5 +1,6 @@
 package br.com.rkDev.terrain.user;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.UUID;
@@ -8,10 +9,12 @@ public class UserManager {
 	
 	private HashMap<UUID, User> users;
 	private UserCache cache;
+	private ArrayList<Integer> bypassed;
 	
 	public UserManager() {
 		users = new HashMap<UUID, User>();
 		cache = new UserCache(this);
+		bypassed = new ArrayList<Integer>();
 		new UserListener();
 	}
 	
@@ -52,5 +55,14 @@ public class UserManager {
 	}
 	public UserCache getCache() {
 		return cache;
+	}
+	public boolean isWithBypass(User user) {
+		return bypassed.contains(user.getId());
+	}
+	public void addBypass(User user) {
+		bypassed.add(user.getId());
+	}
+	public void removeBypass(User user) {
+		bypassed.remove(user.getId());
 	}
 }

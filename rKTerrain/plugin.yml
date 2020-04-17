@@ -1,7 +1,0 @@
-name: rKTerrain
-main: br.com.rkDev.terrain.MinecraftTerrain
-author: rKFabio
-version: 0.01
-depend: [Vault]
-commands:
-  terreno:

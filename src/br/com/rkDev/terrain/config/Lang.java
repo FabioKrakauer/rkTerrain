@@ -35,6 +35,9 @@ public enum Lang {
 	USER_ALREADY_ADD(MinecraftTerrain.getInstance().getMessages().getConfig().getString("UsuarioJaAdicionado")),
 	USER_ADD(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Usuario_Adicionado")),
 	USER_REMOVED(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Usuario_Removido")),
+	
+	BYPASS_ACTIVATED(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Bypass_Ativado")),
+	BYPASS_DESACTIVATED(MinecraftTerrain.getInstance().getMessages().getConfig().getString("Bypass_Desativado")),
 	;
 	
 //	Spawn_Alterado
